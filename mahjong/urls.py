@@ -23,6 +23,7 @@ urlpatterns = [
     path('triple_tile', views.triple_tile, name='triple_tile'),
     path('win_game', views.win_game, name='win_game'),
     path('win_game/<int:game_id>', views.win_game_redirect, name='win_game/'),
+    path('win_game_no_tiles/<int:game_id>', views.win_game_no_tiles, name='win_game_no_tiles'),
     path('eat_tile', views.eat_tile, name='eat_tile')
 
     # path('global_action', views.global_action, name='global'),

@@ -874,7 +874,7 @@ def discard_tile_grab_with_id(request,discard_tile_id,game_id):
     game.list_discarded.add(discarded_tile)
     game.save()
     if game.num_of_tiles_tba <= 0:
-        return redirect('win_game')
+        return redirect('win_game_no_tiles',game_id = game_id)
 
     return redirect('refresh_game', game_id = game.pk, message="A tile is discarded with id")
 
@@ -888,7 +888,8 @@ def discard_tile_grab(request):
     curr_user = None
     new_list_toassigned  = game.list_to_be_assigned.all()
     if game.num_of_tiles_tba <= 0:
-        return redirect('win_game')
+        return redirect('win_game_no_tiles',game_id = game_id)
+
 
     newTile = new_list_toassigned[0]
     game.list_to_be_assigned.remove(newTile)
@@ -1259,8 +1260,7 @@ def eat_tile(request):
 
     game.list_discarded.add(discarded_tile)
     game.save()
-    if game.num_of_tiles_tba <= 0:
-        return redirect('win_game')
+
 
     return redirect('refresh_game', game_id = game.pk, message="A tile is discarded with id")
 
@@ -1274,7 +1274,7 @@ def discard_tile_grab(request):
     curr_user = None
     new_list_toassigned  = game.list_to_be_assigned.all()
     if game.num_of_tiles_tba <= 0:
-        return redirect('win_game')
+        return redirect('win_game_no_tiles',game_id = game_id)
 
     newTile = new_list_toassigned[0]
     game.list_to_be_assigned.remove(newTile)
@@ -1464,9 +1464,23 @@ def win_game_redirect(request,game_id):
     win_list = automaticSort(win_list)
     return render(request, 'mahjong/winpage.html', {"win_list": win_list, "winner_id": game.winner.id, "winner_name": game.winner.username})
 
+def win_game_no_tiles(request,game_id):
+    game = Game.objects.get(id=game_id)
+    context = {"win_list": None,
+               "winner_id": None,
+               "winner": None,
+               "gameId":game.id,
+               "message": "Winner",
+               "user1": game.user1,
+               "user2": game.user2,
+               "user3": game.user3,
+               "user4": game.user4,
+               "game": game}
+    return render(request, 'mahjong/winpage.html', context)
+
+
 def win_game(request):
     # method == "GET" is just for test
-
 
     if not request.POST['game_id']:
         return redirect('refresh_game', game_id=request.POST['game_id'],message ="Can Not Win")
@@ -1485,7 +1499,6 @@ def win_game(request):
                    "user2": game.user2,
                    "user3": game.user3,
                    "user4": game.user4,
-                   "room": room,
                    "game": game}
         return render(request, 'mahjong/winpage.html', context)
 
@@ -1517,7 +1530,6 @@ def win_game(request):
                        "user2": game.user2,
                        "user3": game.user3,
                        "user4": game.user4,
-                       "room": room,
                        "game": game}
             return render(request, 'mahjong/winpage.html', context)
 
@@ -1535,7 +1547,6 @@ def win_game(request):
                "user2": game.user2,
                "user3": game.user3,
                "user4": game.user4,
-               "room": room,
                "game": game}
     return render(request, 'mahjong/winpage.html', context)
 
