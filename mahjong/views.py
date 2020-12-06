@@ -214,25 +214,24 @@ def create_tile(numindex):
     tile_type = ""
     tile_num = ""
     index = -1
-    if numindex <= 35:
+    if numindex <= 36:
         tile_type = "BAMBOO"
         tile_num = numindex % 9 + 1
         index = tile_num
         # 1-9
-    elif numindex <= 71:
+    elif numindex <= 72:
         tile_type = "DOTS"
-        tile_num = (numindex - 35) % 9 + 1
+        tile_num = (numindex - 36) % 9 + 1
         index = 10 + tile_num
         # 11-19
-    elif numindex <= 107:
+    elif numindex <= 108:
         tile_type = "CHARACTERS"
-        tile_num = (numindex - 71) % 9 + 1
+        tile_num = (numindex - 72) % 9 +1
         index = 20 + tile_num
         # 21-29
-    elif numindex <= 123:
+    elif numindex <= 124:
         tile_type = "WIND"
-        times = (numindex - 107) // 4
-
+        times = (numindex - 108) // 4
         if times == 0:
             tile_num = 'EAST'
             index = 40
@@ -245,11 +244,11 @@ def create_tile(numindex):
         else:
             tile_num = 'NORTH'
             index = 70
-    elif numindex <= 127:
+    elif numindex <= 128:
         tile_type = "DRAGON"
         tile_num = "ZHONG"
         index = 80
-    elif numindex <= 131:
+    elif numindex <= 132:
         tile_type = "DRAGON"
         tile_num = "FA"
         index = 90
