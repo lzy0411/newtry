@@ -31,21 +31,12 @@
                     </div>
                 {% else %}
                     <div class="col-xl-7 col-lg-9 text-center">
-                        <h1>Sorry! You Loss :(</h1>
+                        <h1>Sorry! You Lose :(</h1>
                     </div>
-                    {% if winner %}
-                        <div class="col-xl-7 col-lg-9 text-center">
-                            <h1>The winner is {{ winner_name }}</h1>
-                        </div>
-                    {% else %}
-                        <div class="col-xl-7 col-lg-9 text-center">
-                            <h1>Nobody wins the game</h1>
-                        </div>
-                    {% endif %}
                 {% endif %}
                 
             </div>
-          
+
 
             {% for tile in win_list %}
 
