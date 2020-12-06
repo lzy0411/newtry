@@ -240,23 +240,9 @@ Game Room {{gameId}}
             </tr>
             <tr>
                 <td style="text-align: center; vertical-align: bottom;">
-
                 </td>
-                
-                <td style="text-align: center; vertical-align: bottom;">
 
-                    {% if canEat %}
-                        <form method="POST" action = "{% url 'eat_tile' %}" id="eat">
-                            <input type="hidden" name="game_id" value = {{gameId}}>
-                            <input type="hidden" name="request_user" value = {{user}}">
-                            <button type="submit" id="id_eat" class="submitButton"> Eat </button>
-                            {% csrf_token %}
-                        </form>
-                    {% endif %}
-                    
-                    <form method="POST" action = "{% url 'discard_tile_grab' %}" id="discard">
-                        {% csrf_token %}
-                    </form>
+                <td style="text-align: left; vertical-align: bottom;">
 
                     {% if current_user == request.user and canWin %}
                         <form method="POST" action = "{% url 'win_game' %}" >
@@ -267,15 +253,39 @@ Game Room {{gameId}}
                         </form>
                     {%endif%}
 
-                    {% if canTriple  %}
-                        <form method="POST" action = "{% url 'triple_tile' %}" >
-                            <input type="hidden" name="game_id" value = {{gameId}}>
-                            <input type="hidden" name="request_user" value = {{user}}">
-                            {% csrf_token %}
-                            <button type="submit" id="id_triple" class="submitButton">Triple</button>
-                        </form>
-                    {% endif %}
+                    <center>
+
+
+                    <table>
+                        <td>
+                            {% if canEat %}
+                                <form method="POST" action = "{% url 'eat_tile' %}" id="eat">
+                                    <input type="hidden" name="game_id" value = {{gameId}}>
+                                    <input type="hidden" name="request_user" value = {{user}}">
+                                    <button type="submit" id="id_eat" class="submitButton"> Eat </button>
+                                    {% csrf_token %}
+                                </form>
+                            {% endif %}
+                        </td>
+                        <td>
+                            <form method="POST" action = "{% url 'discard_tile_grab' %}" id="discard">
+                                {% csrf_token %}
+                            </form>
+                        </td>
+                        <td>
+                            {% if canTriple  %}
+                                <form method="POST" action = "{% url 'triple_tile' %}" >
+                                    <input type="hidden" name="game_id" value = {{gameId}}>
+                                    <input type="hidden" name="request_user" value = {{user}}">
+                                    {% csrf_token %}
+                                    <button type="submit" id="id_triple" class="submitButton">Triple</button>
+                                </form>
+                            {% endif %}
+                        </td>
+                    </table>
+                </center>
                 </td>
+
             </tr>
 
             <tr>

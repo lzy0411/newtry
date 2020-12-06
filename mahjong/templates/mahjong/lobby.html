@@ -19,7 +19,7 @@
 
             <input placeholder="Enter Room Number" type="text" id="id_room_number" name="roomNum">
 
-        <input id="id_join_room" type="button" value="Join room" class="submitButton">
+        <input id="id_join_room" type="button" value="Join room" class="lobbyButton">
 
 
         {{ message|json_script:"message_1" }}
@@ -35,12 +35,12 @@
             };
         </script>
         <form method="post" action="{% url 'createroom' %}" id="createroom">
-            <button type="submit" id="id_create_room" class="submitButton">Create A New Room</button>
+            <button type="submit" id="id_create_room" class="lobbyButton">Create A New Room</button>
             {% csrf_token %}
         </form>
 
-        <form method="post" action="{% url 'game_instruction' %}" id="createroom">
-            <button type="submit" class="submitButton">Game Instruction</button>
+        <form method="post" action="{% url 'game_instruction' %}" id="instruction">
+            <button type="submit" class="lobbyButton">Game Instruction</button>
             {% csrf_token %}
         </form>
 
