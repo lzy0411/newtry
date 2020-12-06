@@ -270,7 +270,6 @@ def create_tile(numindex):
 def initialize_game(request):
     if request.method != 'POST':
         return _my_json_error_response("You must use a POST request for this operation", status=404)
-
     if not (request.POST['id_user1_status'] and request.POST['id_user2_status'] and request.POST['id_user3_status'] and request.POST['id_user4_status']):
         return redirect('joinroom',room_name = request.POST['room_id'])
     if request.POST['id_user1_status'] == "/" or request.POST['id_user2_status'] =="/" or request.POST['id_user3_status'] == "/" or request.POST['id_user4_status'] =="/":
@@ -298,9 +297,13 @@ def initialize_game(request):
     game.game_time = timezone.now()
     game.game_time = timezone.now()
     game.game_state = 1
+
     game.current_user = user1
+    game.save()
     total = 136
     array_tiles = list(range(1, total + 1))
+    print("!!!!!!!!!! initialize game !!!!!!!!!!!!!")
+    print(array_tiles)
 
     twist_curr = 0
     while twist_curr < 40:
@@ -322,10 +325,7 @@ def initialize_game(request):
             array_tiles[n] = array_tiles[m]
             array_tiles[m] = tmp
         twist_curr += 1
-
     tiles = []
-
-
 
     for i in range(0, len(array_tiles)):
         index = array_tiles[i]
