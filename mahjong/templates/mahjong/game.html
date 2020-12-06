@@ -291,7 +291,16 @@ Game Room {{gameId}}
             <tr>
                 <td></td>
                 <td>
-                    <p style="margin-left:30px;">{{message}}</p>
+                    {% if message == "Game refresh!" %}
+                    <center>
+                        <h3> Please wait for your turn!</h3>
+                    </center>
+                    {% else %}
+                    <center>
+                        <h3 style="margin-left:30px;">{{message}}</h3>
+                    </center>
+
+                    {% endif %}
                 </td>
             </tr>
 
