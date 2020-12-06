@@ -366,12 +366,12 @@ def initialize_game(request):
     print(t4)
     game.list_in_user1.add(tiles[52])
     count = 0
-
+    to = []
     for i in range(53, 136):
-        print(tiles[i].tile_index)
+        to.append(tiles[i].tile_index)
         game.list_to_be_assigned.add(tiles[i])
         count += 1
-
+    print(to)
     game.num_of_tiles_tba = count
     game.save()
 
