@@ -19,8 +19,7 @@ from json import dumps
 
 # Create your views here.
 def register_action(request):
-    if request.method != 'POST':
-        return _my_json_error_response("You must use a POST request for this operation", status=404)
+
     context = {}
 
     # Just display the registration form if this is a GET request.
@@ -54,8 +53,7 @@ def register_action(request):
 
 
 def login_action(request):
-    if request.method != 'POST':
-        return _my_json_error_response("You must use a POST request for this operation", status=404)
+
 
     context = {}
 
