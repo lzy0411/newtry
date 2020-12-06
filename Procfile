@@ -1,2 +1,2 @@
-web: daphne mahjong.asgi:application --port $port $PORT --bind 0.0.0.0 -v2
+web: daphne mahjong.asgi:application
 mahjongworker: python3 manage.py runworker --settings=mahjong.settings -v2
