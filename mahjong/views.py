@@ -687,7 +687,7 @@ def win_game_redirect(request,game_id):
     elif game.winner == game.user4:
         win_list = game.list_in_user4.all()
     if win_list is None:
-        return redirect('refresh_game', game_id=request.POST['game_id'],message ="")
+        return redirect('refresh_game', game_id=game_id,message ="")
     win_list = automaticSort(win_list)
     return render(request, 'mahjong/winpage.html', {"win_list": win_list, "winner_id": game.winner.id, "winner_name": game.winner.username})
 
