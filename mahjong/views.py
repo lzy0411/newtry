@@ -91,8 +91,6 @@ def lobby(request):
 
 @login_required
 def create_room(request):
-    if request.method != 'POST':
-        return _my_json_error_response("You must use a POST request for this operation", status=404)
     game = Game(game_state=0)
     game.save()
     new_room = Room(game_id=game.pk)
@@ -111,8 +109,6 @@ def create_room(request):
 @login_required
 def join_room(request, room_name):
 
-    if request.method != 'POST':
-        return _my_json_error_response("You must use a POST request for this operation", status=404)
     if room_name == "/":
         return redirect(reverse('home'))
     try:
