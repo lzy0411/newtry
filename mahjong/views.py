@@ -507,6 +507,21 @@ def discard_tile_grab(request):
     game.save()
     return redirect('refresh_game', game_id = game.pk, message="A tile is discarded")
 
+def win_game_no_tiles(request,game_id):
+    game = Game.objects.get(id=game_id)
+    context = {"win_list": None,
+               "winner_id": None,
+               "winner": None,
+               "gameId":game.id,
+               "message": "Winner",
+               "user1": game.user1,
+               "user2": game.user2,
+               "user3": game.user3,
+               "user4": game.user4,
+               "game": game}
+    return render(request, 'mahjong/winpage.html', context)
+
+
 @login_required
 def refresh_game_test(request):
     try:
