@@ -5,8 +5,6 @@ from mahjong import views
 
 urlpatterns = [
     path('', views.lobby, name='home'),
-    path('chat/<str:room_name>', views.room, name='room'),
-    path('chat/', views.index, name='index'),
     path('login', views.login_action, name='login'),
     path('register', views.register_action, name='register'),
     path('logout', views.logout_action, name='logout'),
