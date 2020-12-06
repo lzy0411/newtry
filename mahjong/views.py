@@ -331,25 +331,42 @@ def initialize_game(request):
     for i in range(0, len(array_tiles)):
         index = array_tiles[i]
         tile = create_tile(index)
-
+        print(tile.tile_index)
         tiles.append(tile)
 
+    print("~~~~~~~~~~~~~~~~~~~~~~~~~~~~`")
+    t1 = []
+    t2 = []
+    t3 = []
+    t4 = []
     for i in range(0, 52, +4):
         tile1 = tiles[i]
-
+        t1.append(tile1.tile_index)
         game.list_in_user1.add(tile1)
 
         tile2 = tiles[i + 1]
+        t2.append(tile2.tile_index)
         game.list_in_user2.add(tile2)
 
         tile3 = tiles[i+2]
+        t3.append(tile3.tile_index)
         game.list_in_user3.add(tile3)
 
         tile4 = tiles[i+3]
+        t4.append(tile4.tile_index)
         game.list_in_user4.add(tile4)
 
+    print("tile1")
+    print(t1)
+    print("tile2")
+    print(t2)
+    print("tile3")
+    print(t3)
+    print("tile4")
+    print(t4)
     game.list_in_user1.add(tiles[52])
     count = 0
+
     for i in range(53, 136):
         print(tiles[i].tile_index)
         game.list_to_be_assigned.add(tiles[i])
