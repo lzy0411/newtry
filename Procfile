@@ -1,2 +1,2 @@
 web: daphne webapps.asgi:application
-mahjongworker: python3 manage.py runworker --settings=mahjong.settings -v2
+mahjongworker: python3 manage.py runworker --settings=webapps.settings -v2
