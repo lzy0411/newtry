@@ -231,8 +231,8 @@ def create_tile(numindex):
         # 21-29
     elif numindex <= 124:
         tile_type = "WIND"
-        times = (numindex - 108) // 4
-        if times == 0:
+        times = (numindex - 108) % 4
+        if times == 0 :
             tile_num = 'EAST'
             index = 40
         elif times == 1:
@@ -333,44 +333,46 @@ def initialize_game(request):
         print(tile.tile_index)
         tiles.append(tile)
 
-    print("~~~~~~~~~~~~~~~~~~~~~~~~~~~~`")
-    t1 = []
-    t2 = []
-    t3 = []
-    t4 = []
+    # print("~~~~~~~~~~~~~~~~~~~~~~~~~~~~`")
+    # t1 = []
+    # t2 = []
+    # t3 = []
+    # t4 = []
     for i in range(0, 52, +4):
         tile1 = tiles[i]
-        t1.append(tile1.tile_index)
+        # t1.append(tile1.tile_index)
         game.list_in_user1.add(tile1)
 
         tile2 = tiles[i + 1]
-        t2.append(tile2.tile_index)
+        # t2.append(tile2.tile_index)
         game.list_in_user2.add(tile2)
 
         tile3 = tiles[i+2]
-        t3.append(tile3.tile_index)
+        # t3.append(tile3.tile_index)
         game.list_in_user3.add(tile3)
 
         tile4 = tiles[i+3]
-        t4.append(tile4.tile_index)
+        # t4.append(tile4.tile_index)
         game.list_in_user4.add(tile4)
 
-    print("tile1")
-    print(t1)
-    print("tile2")
-    print(t2)
-    print("tile3")
-    print(t3)
-    print("tile4")
-    print(t4)
+
     game.list_in_user1.add(tiles[52])
+    # t1.append(tiles[52].tile_index)
+    # print("tile1")
+    # print(t1)
+    # print("tile2")
+    # print(t2)
+    # print("tile3")
+    # print(t3)
+    # print("tile4")
+    # print(t4)
     count = 0
-    to = []
+    # to = []
     for i in range(53, 136):
-        to.append(tiles[i].tile_index)
+        # to.append(tiles[i].tile_index)
         game.list_to_be_assigned.add(tiles[i])
         count += 1
-    print(to)
+    # print(to)
     game.num_of_tiles_tba = count
     game.save()
 
