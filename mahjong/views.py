@@ -53,8 +53,6 @@ def register_action(request):
 
 
 def login_action(request):
-
-
     context = {}
 
     # Just display the registration form if this is a GET request.
@@ -272,7 +270,6 @@ def create_tile(numindex):
 def initialize_game(request):
     if request.method != 'POST':
         return _my_json_error_response("You must use a POST request for this operation", status=404)
-
     if not (request.POST['id_user1_status'] and request.POST['id_user2_status'] and request.POST['id_user3_status'] and request.POST['id_user4_status']):
         return redirect('joinroom',room_name = request.POST['room_id'])
     if request.POST['id_user1_status'] == "/" or request.POST['id_user2_status'] =="/" or request.POST['id_user3_status'] == "/" or request.POST['id_user4_status'] =="/":
@@ -300,9 +297,13 @@ def initialize_game(request):
     game.game_time = timezone.now()
     game.game_time = timezone.now()
     game.game_state = 1
+
     game.current_user = user1
+    game.save()
     total = 136
     array_tiles = list(range(1, total + 1))
+    print("!!!!!!!!!! initialize game !!!!!!!!!!!!!")
+    print(array_tiles)
 
     twist_curr = 0
     while twist_curr < 40:
@@ -324,10 +325,7 @@ def initialize_game(request):
             array_tiles[n] = array_tiles[m]
             array_tiles[m] = tmp
         twist_curr += 1
-
     tiles = []
-
-
 
     for i in range(0, len(array_tiles)):
         index = array_tiles[i]
@@ -689,7 +687,7 @@ def win_game_redirect(request,game_id):
     elif game.winner == game.user4:
         win_list = game.list_in_user4.all()
     if win_list is None:
-        return redirect('refresh_game', game_id=request.POST['game_id'],message ="")
+        return redirect('refresh_game', game_id=game_id,message ="")
     win_list = automaticSort(win_list)
     return render(request, 'mahjong/winpage.html', {"win_list": win_list, "winner_id": game.winner.id, "winner_name": game.winner.username})
 
@@ -715,7 +713,6 @@ def win_game(request):
                    "user2": game.user2,
                    "user3": game.user3,
                    "user4": game.user4,
-                   "room": room,
                    "game": game}
         return render(request, 'mahjong/winpage.html', context)
 
@@ -747,7 +744,6 @@ def win_game(request):
                        "user2": game.user2,
                        "user3": game.user3,
                        "user4": game.user4,
-                       "room": room,
                        "game": game}
             return render(request, 'mahjong/winpage.html', context)
 
@@ -765,7 +761,6 @@ def win_game(request):
                "user2": game.user2,
                "user3": game.user3,
                "user4": game.user4,
-               "room": room,
                "game": game}
     return render(request, 'mahjong/winpage.html', context)
 
