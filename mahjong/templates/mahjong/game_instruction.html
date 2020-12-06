@@ -1,10 +1,134 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends "mahjong/base.html" %}
 
-</body>
-</html>
+{% load static %}
+
+{% block backgroundpic%}
+<div class="demo"></div>
+{% endblock %}
+
+{% block instruction %}
+
+<div id="instruction">
+
+        <h1 id="logout">
+            <a href="{% url 'logout' %}" id="id_logout_link" class="loginReg">Logout</a>
+            <a href="{% url 'lobby' %}" id="lobby" class="loginReg">Back to lobby</a>
+        </h1>
+        
+    </div>
+
+        <h1>
+            Objective of the Game
+        </h1>
+        <h2>
+            Mahjong is a four-player chess game. 
+            The objective of the game is to collect tiles to form a Mahjong hand. 
+            Players take turns picking one tile from the tile set and discarding one tile. 
+            When for example player A picks up a tile that gives a valid Mahjong 
+            hand or the other player discards a tile that player A 
+            can claim to form a valid Mahjong hand, then player A wins.
+        </h2>
+        
+        <br>
+
+        <h1>
+            Tiles
+        </h1>
+        <h2>
+            A full Mahjong tile set contains 136 tiles. 
+            There are three suit tiles: Bamboo, Characters and Dots. 
+            Each suit has tiles numbered one to nine. 
+            There is four of each tile. There are also honor tiles: 
+            dragons and winds. The dragons are named Red, White and Green. 
+            The winds are East, South, West and North. 
+            There is four of each dragon type and four of each wind in the tile set.
+        </h2>
+        <center>
+            <img src="{% static 'mahjong/instruction.png' %}" width="500px" >
+        </center>
+        
+        <br>
+        <br>
+
+        <h1>
+            Mahjong Hands
+        </h1>
+        <h2>
+            A Mahjong hand normally consists of 4 good sets and 1 pair of the same tiles. 
+            A set is good if there are three ordering tiles of the same class or totally 
+            three same tiles. 
+        </h2>
+        <br>
+        <h2>
+            Here is a typical example of a winning set: 
+            <ul>
+                <li>1st good set: [Dots1, Dots2, Dots3] </li>
+                <li>2nd good set: [Bamboo5, Bamboo6, Bamboo7]  </li>
+                <li>3rd good set: [Dots6, Dots7, Dots8] </li>
+                <li>4th good set: [East, East, East]  </li>
+                <li>1 Pair: [Bamboo 9] [Bamboo 9] </li>
+            </ul>
+        </h2>
+        <br>
+        <h1>
+            Game Flow
+        </h1>
+        <h2>
+            Players start with 13 tiles each. 
+            Player1 starts the game by picking a tile from the tile set. 
+            Players then take counterclockwise turns picking a 
+            tile from the tile set and then discarding one tile from the hand. 
+            It is also possible to claim a tile discarded by another player 
+            under certain circumstances (described below). 
+            Players shall always have a total of 13 tiles in hand, until Mahjong is declared. 
+            (A Mahjong hand contains 14 tiles.)
+        </h2>
+        <br>
+        <h1>
+            Claiming Tiles
+        </h1>
+        <h2>
+            <ul>
+                <li>
+                    A player may claim a discarded tile from last player to 
+                    declare a PONG (the same three tiles, for example, Dots1, Dots1, Dots1).
+                </li>
+                <li>
+                    A player may claim a discarded tile from last player to 
+                    declare an EAT (three ordering tiles of the same class, 
+                    for example player A has Dots6 and Dots8, then last player 
+                    discards Dots7 then player A can claim Dots7 to form a good set 
+                    with Dots6, Dots7, Dots8).
+                </li>
+            </ul>
+            <p>When claiming a discarded tile, the picked tile in this round is automatically discarded</p>
+            By this rule, a player may claim a discarded tile from 
+            last player by EAT OR PONG to form a Mahjong hand and win.
+            <br>
+            Tip: it is not always wise to claim discarded tiles by Pong 
+            as players need a pair to form Mahjong hand. 
+        </h2>
+        <br>
+
+        <h1>
+            Tripe and Eat Tiles
+        </h1>
+        <h2>
+            <ul>
+                <li>
+                    A player may recollect the recent discarded tile from the last 
+                    player to declare a TRIPLE (the same three tiles, for example, Dots1, Dots1, Dots1).
+                </li>
+                <li>
+                    A player may recollect the recent discarded tile from the last player 
+                    to declare an EAT (three ordering tiles of the same class, 
+                    for example player A has Dots6 and Dots8, then last player discards Dots7 
+                    then player A can claim Dots7 to form a good set with Dots6, Dots7, Dots8).
+                </li>
+            </ul>
+            A Tip: It is suggested that when you are going to win, do not to leave 
+            a single tile in hand, which is not within any good sets, since it is impossible 
+            to triple or eat a tile from the last player to make a pair.
+        </h2>
+    </div>
+{% endblock %}

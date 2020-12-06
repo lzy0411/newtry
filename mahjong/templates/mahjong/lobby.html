@@ -39,6 +39,11 @@
             {% csrf_token %}
         </form>
 
+        <form method="post" action="{% url 'game_instruction' %}" id="createroom">
+            <button type="submit" class="submitButton">Game Instruction</button>
+            {% csrf_token %}
+        </form>
+
     </center>
     
 {% endblock %}

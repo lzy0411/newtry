@@ -188,18 +188,21 @@ Game Room {{gameId}}
 <!--                operation button-->
 
                 <td>
-                    <p style="margin-left:210px; font-size:20px">Last Discarded Tile: </p>
-                    {% if last_tile %}
-                        <img id = "last_discarded_id" src = "" width="80px" style="margin-left:260px;">
-                            <script language="javascript">
-                                var adres="/static/mahjong/"
-                                var adres2 = adres.concat({{last_tile.tile_index}}, ".png")
-                                document.getElementById("last_discarded_id").src = adres2;
-                            </script>
-                    {% else %}
-                        <p style="margin-left:260px;">Currently no</p>
-                    {% endif %}
-                    <h1 style="margin-left:140px;"> Remaining Tiles: {{num_of_tiles_tba}}</h1>
+                    <center>
+                        <p style="font-size:20px">Last Discarded Tile: </p >
+                        {% if last_tile %}
+                            <img id = "last_discarded_id" src = "" width="80px">
+                                <script language="javascript">
+                                    var adres="/static/mahjong/"
+                                    var adres2 = adres.concat({{last_tile.tile_index}}, ".png")
+                                    document.getElementById("last_discarded_id").src = adres2;
+                                </script>
+                        {% else %}
+                            <p>Currently no</p >
+                        {% endif %}
+                        <h1> Remaining Tiles: {{num_of_tiles_tba}}</h1>
+                    </center>
+
                 </td>
 
                 <td>
@@ -237,6 +240,11 @@ Game Room {{gameId}}
             </tr>
             <tr>
                 <td style="text-align: center; vertical-align: bottom;">
+
+                </td>
+                
+                <td style="text-align: center; vertical-align: bottom;">
+
                     {% if canEat %}
                         <form method="POST" action = "{% url 'eat_tile' %}" id="eat">
                             <input type="hidden" name="game_id" value = {{gameId}}>
@@ -245,9 +253,6 @@ Game Room {{gameId}}
                             {% csrf_token %}
                         </form>
                     {% endif %}
-                </td>
-                
-                <td style="text-align: center; vertical-align: bottom;">
                     
                     <form method="POST" action = "{% url 'discard_tile_grab' %}" id="discard">
                         {% csrf_token %}
