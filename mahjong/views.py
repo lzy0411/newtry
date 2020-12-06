@@ -53,8 +53,6 @@ def register_action(request):
 
 
 def login_action(request):
-
-
     context = {}
 
     # Just display the registration form if this is a GET request.
@@ -715,7 +713,6 @@ def win_game(request):
                    "user2": game.user2,
                    "user3": game.user3,
                    "user4": game.user4,
-                   "room": room,
                    "game": game}
         return render(request, 'mahjong/winpage.html', context)
 
@@ -747,7 +744,6 @@ def win_game(request):
                        "user2": game.user2,
                        "user3": game.user3,
                        "user4": game.user4,
-                       "room": room,
                        "game": game}
             return render(request, 'mahjong/winpage.html', context)
 
@@ -765,7 +761,6 @@ def win_game(request):
                "user2": game.user2,
                "user3": game.user3,
                "user4": game.user4,
-               "room": room,
                "game": game}
     return render(request, 'mahjong/winpage.html', context)
 
