@@ -3,7 +3,7 @@
 {% load static %}
 
 {% block backgroundpic%}
-<div class="demo"></div>
+<div class="insdemo"></div>
 {% endblock %}
 
 {% block instruction %}
@@ -12,7 +12,7 @@
 
         <h1 id="logout">
             <a href="{% url 'logout' %}" id="id_logout_link" class="loginReg">Logout</a>
-            <a href="{% url 'lobby' %}" id="lobby" class="loginReg">Back to lobby</a>
+            <a href="{% url 'lobby' %}" id="lobby" class="loginReg" >Back to lobby</a>
         </h1>
         
     </div>
@@ -44,7 +44,7 @@
             There is four of each dragon type and four of each wind in the tile set.
         </h2>
         <center>
-            <img src="{% static 'mahjong/instruction.png' %}" width="500px" >
+            <img src="{% static 'mahjong/tileset.jpg' %}" width="500px" >
         </center>
         
         <br>
