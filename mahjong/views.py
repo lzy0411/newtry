@@ -302,8 +302,7 @@ def initialize_game(request):
     game.save()
     total = 136
     array_tiles = list(range(1, total + 1))
-    print("!!!!!!!!!! initialize game !!!!!!!!!!!!!")
-    print(array_tiles)
+
 
     twist_curr = 0
     while twist_curr < 40:
@@ -325,6 +324,8 @@ def initialize_game(request):
             array_tiles[n] = array_tiles[m]
             array_tiles[m] = tmp
         twist_curr += 1
+    print("!!!!!!!!!! initialize game !!!!!!!!!!!!!")
+    print(array_tiles)
     tiles = []
 
     for i in range(0, len(array_tiles)):
@@ -350,7 +351,8 @@ def initialize_game(request):
     game.list_in_user1.add(tiles[52])
     count = 0
     for i in range(53, 136):
-        game.list_to_be_assigned.add(array_tiles[i])
+        print(tiles[i].tile_index)
+        game.list_to_be_assigned.add(tiles[i])
         count += 1
 
     game.num_of_tiles_tba = count
@@ -467,6 +469,8 @@ def discard_tile_grab(request):
 
     curr_user = None
     new_list_toassigned  = game.list_to_be_assigned.all()
+    print("newlist to assgined")
+    print(new_list_toassigned)
     if game.num_of_tiles_tba <= 0:
         return redirect('win_game_no_tiles',game_id = game_id)
 
